@@ -1,0 +1,89 @@
+html, body
+{
+/*	If Height & Width are set to 100% weird things happen */
+	height:99%;
+	width:99%;
+}
+
+body
+{
+/*	Crimson is a nice holiday red */
+	background:Crimson
+}
+
+#page
+{
+/*	We can set the div's width and height to 100% of the parent area without repercussions */
+	width:100%;
+	height:100%;
+	margin:0 auto;
+}
+
+table
+{
+/*	The table holds the BINGO card. It is 100% of the width of the its parent and 75% of the height -- trial and error */
+/*	width:100%; */
+/*	height:80%; */
+}
+
+tr
+{
+/*	There are six rows, so each row should be (16+(2/3))% of the height of its container, the table; for ease of typing, I use 16% */
+	height:16%;
+}
+
+td	/*	These are the cells of the BINGO card */
+{
+	font-family:arial;
+	color:Black;
+/*	width:20%; */
+/*	height:16%; */
+	text-align:center;
+	border:1px solid #ddc;
+	background-color:Snow;
+}
+
+.bingohead	/*	The header row that has 'BINGO' in has a ?class? of bingohead */
+{
+	background-color:Crimson;
+/*	Snow is not quite stark white */
+	color:Snow;
+	border:2px solid Snow;
+	cursor:default;
+}
+
+#newCard
+{
+	font-family:arial;
+	text-align:center;
+	padding:3px;
+	color:Snow;
+/*	Forestgreen is a nice holiday green */
+	background-color:Forestgreen;
+	border:2px solid #DDDDCC;
+	-webkit-text-size-adjust:none;
+	-moz-text-size-adjust:none;
+	-ms-text-size-adjust:none;
+}
+
+#footer, #footer:link
+{
+	font-family:arial;
+	text-align:center;
+	color:Snow;
+	-webkit-text-size-adjust:none;
+	-moz-text-size-adjust:none;
+	-ms-text-size-adjust:none;
+}
+
+td
+{
+	cursor:pointer;
+}
+
+#free
+{
+	background-color:Forestgreen;
+	color:Snow;
+	cursor:default;
+}
