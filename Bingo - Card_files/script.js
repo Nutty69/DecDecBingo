@@ -1,3 +1,4 @@
+// if editing in GitHub set to "Spaces" and "2" so things line up a little better, maybe?
 // x ? y : z = if x then y else z
  $(document).ready(function(){
    
