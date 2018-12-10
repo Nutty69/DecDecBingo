@@ -3,15 +3,15 @@
    
    var usedArray = new Array(76);	// Why do I have 76 elements when there are only 75 numbers?
    var baseArray = new Array(0,0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4,4);	/*	The base multiplier for when we store the numbers
-																					The first 5 cells are in the B column
-																					The next 5 are in the I column
-																					The next 4 are in the N column (only four actual numbers, center is free)
-																					The next 5 are in the G column
-																					The last 5 are in the O column
-																				*/
-   var number = 0;		// let's start with any number, 0 is a good one
-   var addNumber = 0;	// and the number that gets added to it is also 0
-   var base = 0;		// and the base number is also 0
+																																										The first 5 cells are in the B column
+																																										The next 5 are in the I column
+																																										The next 4 are in the N column (only four actual numbers, center is free)
+																																										The next 5 are in the G column
+																																										The last 5 are in the O column
+																																								*/
+   var number = 0;      // let's start with any number, 0 is a good one
+   var addNumber = 0;		// and the number that gets added to it is also 0
+   var base = 0;        // and the base number is also 0
    var canStore = true;	// let's assume that we can store data
    var secretCode = "20181208";	// and now for this year's secret code ... it lets us automatically clear the card if we change the secretCode
    var keepCard = true;	// and we'll also assume that the user wants to keep any card they had -- that is if they're allowed to
@@ -21,16 +21,18 @@
 	function init(){	// why is this function inside of the document.ready function? Would it work outside? Is it better inside or out?
 		/*	NOTE TO SELF:
 			Do we really need these vars here: node, bodyWidth, bodyHeight, minDim, and textSize?
-			It looks like maybe we used to set the cell font size as we went along but later decided to move that to its own function
+			It looks like maybe we used to set the cell font size as we went along but later decided to 
+			move that to its own function
 		*/
 		/*
+			I guess we decided that we didn't really need these here after all
 		var node = document.getElementById('page');
 		var bodyWidth = node.offsetWidth;
 		var bodyHeight = $(window).height();
 		var minDim = (bodyWidth<bodyHeight) ? bodyWidth : bodyHeight;
 		var textSize = .10*minDim;	// experimentation showed this worked well
 		*/
-		Math.seedrandom();
+		Math.seedrandom();	// theoretically uses a PRNG that incorporates entropy and other cool stuff
 		if (typeof localStorage === 'object') {	// if localStorage is exposed as an object then ...
 			// Safari in iOS (as of 8.1) will expose localStorage but not actually allow its use.
 			// To compensate, we need to 'try' to see if we can actually store some data.
@@ -164,24 +166,24 @@
 		if ( this.className != "bingohead" ) {	// We don't let the user change the color of the 'BINGO' letters
 			var toggle = this.style;			// We get the current 'style' attributes of the cell that's been tapped 
 			toggle.backgroundColor = toggle.backgroundColor ? "":"Forestgreen";	// eek, the dreaded ? : operator. No worries: if the bg isn't blank then make it blank, and vice-versa
-			toggle.color = toggle.color ? "":"White";							// what, another ? : operator? okay, this time, if the fg isn't blank then make it blank, and vice-versa
+			toggle.color = toggle.color ? "":"White";	// what, another ? : operator? okay, this time, if the fg isn't blank then make it blank, and vice-versa
 			localStorage.setItem(this.id + 'bg', toggle.backgroundColor);		// and make sure we store that info
 			localStorage.setItem(this.id + 'fg', toggle.color);					// for both bg and fg
 		}
 	 });	// end function td.click
-	 resizeMe();
+	 resizeMe();	// whenever we redo the card, we should make sure that everything fits
  });	// end function document.ready
 
 /*	There are other things that need to happen
-	For instance, we need to set the font size for the cell.
-	We do this when the window is resized. Some possible times include:
+		For instance, we need to set the font size for the cell.
+		We do this when the window is resized. Some possible times include:
 		a change from portrait to landscape orientation on a phone
 		when a browser window is resized on a computer
 */
 function setCellFontSize(){
 	var node=document.getElementById('page');	// lets create a new node equal to the div called 'page'
-	var bodyWidth=node.offsetWidth;				// and we'll say that the width is the width of that node
-	var bodyHeight=$(window).height();			// and because javascript is really weird about getting the height, we'll use jQuery's helpful tools
+	var bodyWidth=node.offsetWidth;						// and we'll say that the width is the width of that node
+	var bodyHeight=$(window).height();				// and because javascript is really weird about getting the height, we'll use jQuery's helpful tools
 	var minDim = (bodyWidth<bodyHeight) ? bodyWidth : bodyHeight;	// You're kidding me, right, another shorthand? Oh well: basically, minDim is the smaller of the height and the width
 	var textSize=.11*minDim;	// trial and error showed this to be a nice starting point for font size: 11% of the minimum dimension
 	for(var i = 1; i <= 5; i++) {	// there are 5 columns
@@ -203,7 +205,7 @@ function resizeMe(){
 //	setCellFontSize();	// Right...we need to reset the font sizes
 };
 
-var TO = false;	// Let's set a variable we can use for tracking a timeout
+var TO = false;	// Let's set a variable we can use for tracking a TimeOut
 $(window).resize(function(){	// jQuery can also tell us when the window is resized
 	if(TO !== false)			// if we've timed out ...
 		clearTimeout(TO);		// clear the timeout so we can start from 0 the next time around
