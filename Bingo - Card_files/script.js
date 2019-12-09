@@ -14,7 +14,7 @@
    var addNumber = 0;		// and the number that gets added to it is also 0
    var base = 0;        // and the base number is also 0
    var canStore = true;	// let's assume that we can store data
-   var secretCode = "20181208";	// and now for this year's secret code ... it lets us automatically clear the card if we change the secretCode
+   var secretCode = "20191214";	// and now for this year's secret code ... it lets us automatically clear the card if we change the secretCode
    var keepCard = true;	// and we'll also assume that the user wants to keep any card they had -- that is if they're allowed to
    
    init();	// let's get this party started!
